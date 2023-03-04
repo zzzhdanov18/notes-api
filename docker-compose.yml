@@ -44,3 +44,7 @@ services:
       retries: 10
     networks:
       - mynetwork
+    
+networks:
+  test_network:
+      name: mynetwork
