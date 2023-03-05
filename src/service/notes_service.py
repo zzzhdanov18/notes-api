@@ -25,7 +25,7 @@ class NotesService(AbstractService):
     def create_item(self, note_item: NoteItemCreate) -> NoteItem:
         return self.crud.create(note_item)
     
-    def mark_item_as_completed(self, note_id) -> None:
+    def mark_item_as_completed(self, note_id: UUID):
         note_item = self.crud.get_detail(note_id)
 
         if note_item is None:
@@ -33,7 +33,9 @@ class NotesService(AbstractService):
         
         self.crud.mark_as_completed(note_id)
 
-    def delete_item(self, note_id):
+        return {'status': 'true', 'message': 'The note was marked as completed'}
+
+    def delete_item(self, note_id: UUID):
         note_item = self.crud.get_detail(note_id)
 
         if note_item is None:
@@ -41,7 +43,7 @@ class NotesService(AbstractService):
         
         self.crud.delete(note_id)
 
-        return {'message': 'The note has been deleted'}
+        return {'status': 'true', 'message': 'The note has been deleted'}
     
 
 

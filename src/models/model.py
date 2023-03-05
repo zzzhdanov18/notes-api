@@ -1,6 +1,6 @@
 from src.db.database_config import Base
 
-from sqlalchemy import String, Boolean, DateTime, Column
+from sqlalchemy import String, Boolean, Date, Column
 from sqlalchemy.dialects.postgresql import UUID
 
 
@@ -11,5 +11,5 @@ class Note(Base):
     title = Column(String(30), nullable=False)
     text = Column(String(30))
     is_completed = Column(Boolean)
-    date_completion = Column(String(30))
+    date_completion = Column(Date)
 

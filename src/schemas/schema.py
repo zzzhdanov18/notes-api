@@ -1,12 +1,12 @@
-from pydantic import BaseModel
-from datetime import datetime
+from pydantic import BaseModel, validator
+from datetime import datetime, date 
 from uuid import UUID
 
 
 class NoteItemCreate(BaseModel):
     title: str
     text: str
-    date_completion: str
+    date_completion: date
 
 
 class NoteItem(NoteItemCreate):
