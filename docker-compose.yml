@@ -3,7 +3,6 @@ version: '3.8'
 services:
   notes-app:
     container_name: notes-app
-    restart: always
     build:
       context: .
       dockerfile: Dockerfile
@@ -12,7 +11,11 @@ services:
     environment:
       - DATABASE_URL=${MAIN_DATABASE_URL}
     entrypoint: >
-      sh -c "uvicorn main:app --host 0.0.0.0 --port 8000"
+      sh -c "
+          alembic revision --autogenerate -m "initial"
+          alembic upgrade head
+          uvicorn main:app --host 0.0.0.0 --port 8000
+          "
     links:
       - db
     ports:
@@ -46,5 +49,5 @@ services:
       - mynetwork
     
 networks:
-  test_network:
+  mynetwork:
       name: mynetwork

@@ -1,17 +1,17 @@
 from pydantic import BaseModel
-from datetime import date
+from datetime import datetime
 from uuid import UUID
 
 
 class NoteItemCreate(BaseModel):
     title: str
     text: str
-    date_completion: date
+    date_completion: str
 
 
 class NoteItem(NoteItemCreate):
     id: UUID
-    is_complete: bool
+    is_completed: bool
 
     class Config:
         orm_mode = True
